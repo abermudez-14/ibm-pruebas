@@ -76,3 +76,11 @@ resource "ibm_is_instance" "vm_abermudez" {
   }
 }
 
+resource "ibm_is_floating_ip" "public_ip" {
+  name   = "public-ip-abermudez"
+  target = ibm_is_instance.vm_abermudez.primary_network_interface[0].id
+  resource_group = var.resource_group
+  depends_on = [ibm_is_instance.vm_abermudez]
+
+}
+
