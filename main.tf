@@ -21,7 +21,7 @@ resource "ibm_is_vpc" "vpc_abermudez" {
 
 # Crear dos subredes en la VPC
 resource "ibm_is_subnet" "subnet1" {
-  name                     = "subnet2"
+  name                     = "subnet1"
   vpc                      = ibm_is_vpc.vpc_abermudez.id
   zone                     = "eu-es-1"
   total_ipv4_address_count = 256
