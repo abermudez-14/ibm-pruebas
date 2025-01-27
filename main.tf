@@ -47,7 +47,7 @@ resource "ibm_is_instance" "vm1" {
 
   primary_network_interface {
     subnet = ibm_is_subnet.subnet1.id
-    security_groups = ibm_is_security_group.ssh_abermudez_security_group.id
+    security_groups = [ibm_is_security_group.ssh_abermudez_security_group.id]
 
   }
 }
@@ -63,7 +63,7 @@ resource "ibm_is_instance" "vm2" {
 
   primary_network_interface {
     subnet = ibm_is_subnet.subnet2.id
-    security_groups = ibm_is_security_group.ssh_abermudez_security_group.id
+    security_groups = [ibm_is_security_group.ssh_abermudez_security_group.id]
   }
 }
 
