@@ -16,7 +16,6 @@ provider "ibm" {
 resource "ibm_is_vpc" "vpc_abermudez" {
   name = "vpc-abermudez"
   resource_group = var.resource_group
-  security_group = [ibm_is_security_group.ssh_abermudez_security_group.id]
 }
 
 # Crear dos subredes en la VPC
