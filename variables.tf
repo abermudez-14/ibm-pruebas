@@ -8,3 +8,4 @@ variable "api_key" {
 variable "resource_group" {
   
 }
+
