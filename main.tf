@@ -16,6 +16,7 @@ provider "ibm" {
 resource "ibm_is_vpc" "vpc_abermudez" {
   name = "vpc-abermudez"
   resource_group = var.resource_group
+  security_group = [ibm_is_security_group.ssh_abermudez_security_group.id]
 }
 
 # Crear dos subredes en la VPC
@@ -24,7 +25,8 @@ resource "ibm_is_subnet" "subnet1" {
   vpc                      = ibm_is_vpc.vpc_abermudez.id
   zone                     = "eu-es-1"
   total_ipv4_address_count = 256
-  resource_group = var.resource_group  
+  resource_group = var.resource_group
+    
 }
 
 resource "ibm_is_subnet" "subnet2" {
