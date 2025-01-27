@@ -47,6 +47,8 @@ resource "ibm_is_instance" "vm1" {
 
   primary_network_interface {
     subnet = ibm_is_subnet.subnet1.id
+    security_groups = ibm_is_security_group.ssh_abermudez_security_group.id
+
   }
 }
 
@@ -61,6 +63,7 @@ resource "ibm_is_instance" "vm2" {
 
   primary_network_interface {
     subnet = ibm_is_subnet.subnet2.id
+    security_groups = ibm_is_security_group.ssh_abermudez_security_group.id
   }
 }
 
@@ -100,4 +103,45 @@ resource "ibm_is_lb_pool_member" "member2" {
   pool     = ibm_is_lb_pool.backend_pool.id
   port     = 80
   target_address = ibm_is_instance.vm2.primary_network_interface[0].primary_ipv4_address
+}
+
+
+
+resource "ibm_is_security_group" "ssh_abermudez_security_group" {
+  name            = "ssh-security-group"
+  vpc          =  ibm_is_vpc.vpc_abermudez.id
+  resource_group  = var.resource_group  
+}
+
+
+
+resource "ibm_is_security_group_rule" "ssh_rule" {
+  group     = ibm_is_security_group.ssh_abermudez_security_group.id
+  direction = "inbound"
+  remote    = "0.0.0.0/0"
+  tcp {
+    port_min = 22
+    port_max = 22
+  }
+}
+
+resource "ibm_is_security_group_rule" "http_rule" {
+  group     = ibm_is_security_group.ssh_abermudez_security_group.id
+  direction = "inbound"
+  remote    = "0.0.0.0/0"
+  tcp {
+    port_min = 80
+    port_max = 80
+  }
+}
+
+
+
+resource "ibm_is_ssh_key" "ssh_key" {
+  name       = "ssh-key-abermudez"
+  public_key = <<-EOF
+ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDQYePYr1IxSOGxJ6+lKuD4onsLK8jxU93BvYAB2lxTgomteXCpdHnKK3jix8hxadmANkG/k9kEjxWwKQR7ZVyw8eQul3aLCfMnHGqplVQH3JSsz5bKMaCNx8r2P5SYGLeTmbixZUmjlFxeacEQ7/8RPvVESZ5IvrOpNtsW0kF3IsxXZndLhZlC+a69xIw2UTDVYRjwSFcB4BLl2Z3YPIwcFNWyDQdThmSWJkfdXxOmunaVRVK+OFhEAJmIf8TJ6JVBbsBf1RU2khD8M3zGpxTKF6W0rb9seEkfHERhJbYpv8NmyWST8vgyCYRElKQK+IWmT4qMua+q6eXcrUtalyZa1m8rIytze10sa4kBsN/fdr/rtACDo+hx/e1lU5GnwodPscFaVHHH5nIOF1iq4llRevoPsTvSwViAE9Se1BrLZC1MrpyxF8l7LTDqCYbRuWoTXP5w5ElbqKIEbaBvv3xhd8V7jW0VYvg/vSbD9ZApAmb7QRnzzjGLCKS9k5/rOvhtcT/FP7XXxivnc+tRp7Q+FRjHAPgmhd9unk/LTUjXhaD9+M30nDol39jT+jwBZ8JOW1rFEFQJkGM7wfqSzbJRQutH5VMCX3XSk1+qv2hz5Sza1IJJPfeleetFRT9b1AbU/TCRpOg7ZwrcvMd9xyWFacHTqaUR2/oXF2c6FzT6FQ== abermudez@stemdo
+  EOF
+  resource_group = var.resource_group
+  
 }
