@@ -14,7 +14,7 @@ provider "ibm" {
 
 # Crear una VPC
 resource "ibm_is_vpc" "vpc_abermudez" {
-  name = "vpc_abermudez"
+  name = "vpc-abermudez"
   resource_group = var.resource_group
 }
 
@@ -37,7 +37,7 @@ resource "ibm_is_subnet" "subnet2" {
 
 # Crear dos instancias (VMs) en las subredes
 resource "ibm_is_instance" "vm1" {
-  name    = "vm1_abermudez"
+  name    = "vm1-abermudez"
   vpc     = ibm_is_vpc.vpc_abermudez.id
   zone    = "eu-es-1"
   keys    = [ibm_is_ssh_key.ssh_key.id]
@@ -51,7 +51,7 @@ resource "ibm_is_instance" "vm1" {
 }
 
 resource "ibm_is_instance" "vm2" {
-  name    = "vm2_abermudez"
+  name    = "vm2-abermudez"
   vpc     = ibm_is_vpc.vpc_abermudez.id
   zone    = "eu-es-2"
   keys    = [ibm_is_ssh_key.ssh_key.id]
