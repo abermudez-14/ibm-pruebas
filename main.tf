@@ -26,6 +26,8 @@ resource "ibm_is_subnet" "subnet_module_abermudez" {
   vpc = ibm_is_vpc.vpc_module_abermudez.id
   zone = "eu-es-1"
   ipv4_cidr_block = "10.251.10.0/24"
+  resource_group  = var.resource_group  
+
 
 }
 
