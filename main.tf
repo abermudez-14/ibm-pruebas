@@ -41,7 +41,7 @@ resource "ibm_is_instance" "vm1" {
   vpc     = ibm_is_vpc.vpc_abermudez.id
   zone    = "eu-es-1"
   keys    = [ibm_is_ssh_key.ssh_key.id]
-  image   = "r014-931515d2-fcc3-11e9-896d-3baa2797200f" # ID de una imagen de Ubuntu
+  image   = "r050-b98611da-e7d8-44db-8c42-2795071eec24" # ID de una imagen de Ubuntu
   profile = "bx2-2x8"
   resource_group = var.resource_group
 
@@ -57,7 +57,7 @@ resource "ibm_is_instance" "vm2" {
   vpc     = ibm_is_vpc.vpc_abermudez.id
   zone    = "eu-es-2"
   keys    = [ibm_is_ssh_key.ssh_key.id]
-  image   = "r014-931515d2-fcc3-11e9-896d-3baa2797200f" # ID de una imagen de Ubuntu
+  image   = "r050-b98611da-e7d8-44db-8c42-2795071eec24" # ID de una imagen de Ubuntu
   profile = "bx2-2x8"
   resource_group = var.resource_group  
 
