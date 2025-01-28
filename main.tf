@@ -155,3 +155,21 @@ resource "ibm_is_ssh_key" "ssh_key" {
   resource_group = var.resource_group
   
 }
+
+
+resource "ibm_is_floating_ip" "public_ip1" {
+  name   = "public-ip1-abermudez"
+  target = ibm_is_instance.vm1.primary_network_interface[0].id
+  resource_group = var.resource_group
+  depends_on = [ibm_is_instance.vm_abermudez]
+
+}
+
+
+resource "ibm_is_floating_ip" "public_ip2" {
+  name   = "public-ip2-abermudez"
+  target = ibm_is_instance.vm2.primary_network_interface[0].id
+  resource_group = var.resource_group
+  depends_on = [ibm_is_instance.vm_abermudez]
+
+}
