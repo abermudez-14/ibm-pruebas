@@ -126,6 +126,7 @@ resource "ibm_is_security_group_rule" "ssh_rule" {
   }
 }
 
+
 resource "ibm_is_security_group_rule" "http_rule" {
   group     = ibm_is_security_group.ssh_abermudez_security_group.id
   direction = "inbound"
@@ -134,6 +135,13 @@ resource "ibm_is_security_group_rule" "http_rule" {
     port_min = 80
     port_max = 80
   }
+}
+
+resource "ibm_is_security_group_rule" "http_rule" {
+  group     = ibm_is_security_group.ssh_abermudez_security_group.id
+  direction = "outbound"
+  remote    = "0.0.0.0/0"
+
 }
 
 
