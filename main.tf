@@ -137,7 +137,7 @@ resource "ibm_is_security_group_rule" "http_rule" {
   }
 }
 
-resource "ibm_is_security_group_rule" "http_rule" {
+resource "ibm_is_security_group_rule" "internet_rule" {
   group     = ibm_is_security_group.ssh_abermudez_security_group.id
   direction = "outbound"
   remote    = "0.0.0.0/0"
