@@ -74,6 +74,7 @@ resource "ibm_is_lb" "load_balancer" {
   subnets = [ibm_is_subnet.subnet1.id, ibm_is_subnet.subnet2.id]
   type    = "public"
   resource_group = var.resource_group
+  security_groups = [ ibm_is_security_group.ssh_abermudez_security_group.id]
 }
 
 # Crear un pool de backend para el balanceador de carga
