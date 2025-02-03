@@ -213,6 +213,7 @@ resource "ibm_cos_bucket" "static_bucket" {
   bucket_name       = "mi-web-estatica-bucket"
   resource_instance_id = ibm_resource_instance.cos_instance.id
   storage_class     = "standard"
+  region_location = "eu-es"
 }
 
 
