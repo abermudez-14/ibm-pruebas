@@ -205,7 +205,7 @@ resource "ibm_resource_instance" "cos_instance" {
   name              = "cos-abermudez"
   service          = "cloud-object-storage"
   plan             = "standard"
-  location         = "eu-es"
+  location         = "global"
   resource_group_id = var.resource_group
 }
 
