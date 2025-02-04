@@ -231,7 +231,7 @@ provider "ibm" {
 
 resource "ibm_cis" "waf_ibm_labs" {
   name     = "waf-ibm-labs"
-  plan     = "standard"
+  plan     = "free"
   location = "global"
 }
 
