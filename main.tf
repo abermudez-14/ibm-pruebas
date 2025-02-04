@@ -235,10 +235,10 @@ resource "ibm_cis" "waf_ibm_labs" {
   location = "global"
 }
 
-resource "ibm_cis_waf" "waf_rule" {
-  cis_id       = ibm_cis.waf_ibm_labs.id
-  zone_id      = "TU_ZONE_ID"  # Debes obtenerlo desde IBM Cloud
-  action       = "simulate"    # Cambia a "block" para bloquear tráfico malicioso
-  mode         = "on"
-  rule_group   = "default"
-}
+# resource "ibm_cis_waf" "waf_rule" {
+#   cis_id       = ibm_cis.waf_ibm_labs.id
+#   zone_id      = "TU_ZONE_ID"  # Debes obtenerlo desde IBM Cloud
+#   action       = "simulate"    # Cambia a "block" para bloquear tráfico malicioso
+#   mode         = "on"
+#   rule_group   = "default"
+# }
