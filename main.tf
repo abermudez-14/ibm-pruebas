@@ -227,3 +227,18 @@ output "ip_publica_vm1" {
 output "ip_publica_vm2" {
   value = ibm_is_floating_ip.ip_vm2.address
 }
+
+
+resource "ibm_cis" "waf_ibm_labs" {
+  name     = "waf-ibm-labs"
+  plan     = "standard"
+  location = "global"
+}
+
+# resource "ibm_cis_waf" "waf_rule" {
+#   cis_id       = ibm_cis.waf_ibm_labs.id
+#   zone_id      = "TU_ZONE_ID"  # Debes obtenerlo desde IBM Cloud
+#   action       = "simulate"    # Cambia a "block" para bloquear tráfico malicioso
+#   mode         = "on"
+#   rule_group   = "default"
+# }
