@@ -243,7 +243,7 @@ provider "ibm" {
 
 resource "ibm_resource_instance" "monitoring_instance" {
   name              = "IBM Cloud Monitoring"
-  service           = "monitoring"
+  service           = "sysdig-monitoring"
   plan              = "lite"
   location          = "eu-es"
   resource_group_id = var.resource_group
