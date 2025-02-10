@@ -229,13 +229,22 @@ provider "ibm" {
 # }
 
 
-resource "ibm_cis" "waf_ibm_labs" {
-  name     = "waf-ibm-labs"
-  plan     = "free"
-  location = "global"
-}
+# resource "ibm_cis" "waf_ibm_labs" {
+#   name     = "waf-ibm-labs"
+#   plan     = "free"
+#   location = "global"
+# }
 
-resource "ibm_cis_domain" "my_domain" {
-  cis_id = ibm_cis.waf_ibm_labs.id
-  domain = "tu-dominio.com"
+# resource "ibm_cis_domain" "my_domain" {
+#   cis_id = ibm_cis.waf_ibm_labs.id
+#   domain = "tu-dominio.com"
+# }
+
+
+resource "ibm_resource_instance" "monitoring_instance" {
+  name              = "IBM Cloud Monitoring"
+  service           = "ibm-cloud-monitoring"
+  plan              = "standard"
+  location          = "eu-es"
+  resource_group_id = var.resource_group
 }
