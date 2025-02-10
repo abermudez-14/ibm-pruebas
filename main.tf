@@ -2,7 +2,7 @@ terraform {
   required_providers {
     ibm = {
       source = "IBM-Cloud/ibm"
-      version = ">= 1.12.0"
+      version = ">= 1.75.1"
     }
   }
 }
@@ -243,7 +243,7 @@ provider "ibm" {
 
 resource "ibm_resource_instance" "monitoring_instance" {
   name              = "IBM Cloud Monitoring"
-  service           = "ibm-monitoring"
+  service           = "monitoring"
   plan              = "lite"
   location          = "eu-es"
   resource_group_id = var.resource_group
