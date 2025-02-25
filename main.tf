@@ -27,10 +27,10 @@ provider "kubernetes" {
 #   }
 # }
 
-resource "ibm_iam_access_group" "stemdowiki" {
- name        = "stemdo_WIKI"
- description = "New access group"
-}
+# resource "ibm_iam_access_group" "stemdowiki" {
+#  name        = "stemdo_WIKI"
+#  description = "New access group"
+# }
 
 resource "kubernetes_namespace" "stemdo-wiki" {
   metadata {
