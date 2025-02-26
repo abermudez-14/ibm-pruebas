@@ -12,8 +12,23 @@ provider "ibm" {
   ibmcloud_api_key = var.api_key
 }
 
+ 
 provider "kubernetes" {
-  config_context_cluster = "ez-ibm-openshift-vpc"
+  host                   = data.ibm_container_cluster_config.cluster_config.host
+  token                  = data.ibm_container_cluster_config.cluster_config.token
+  cluster_ca_certificate = data.ibm_container_cluster_config.cluster_config.ca_certificate
+}
+
+data "ibm_container_vpc_cluster" "cluster" {
+  name              = "ibm-openshift-pruebas"
+  resource_group_id = var.resource_group
+}
+ 
+data "ibm_container_cluster_config" "cluster_config" {
+  depends_on = [ data.ibm_container_vpc_cluster.cluster ]
+  cluster_name_id   = data.ibm_container_vpc_cluster.cluster.id
+  resource_group_id = data.ibm_container_vpc_cluster.cluster.resource_group_id
+  admin             = true
 }
 
 # resource "ibm_iam_user_invite" "wiki_user" {
@@ -35,6 +50,5 @@ provider "kubernetes" {
 resource "kubernetes_namespace" "stemdo-wiki" {
   metadata {
     name = "stemdo-wiki"
-
   }
 }
