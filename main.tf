@@ -44,9 +44,7 @@ resource "kubernetes_namespace" "stemdo-wiki" {
   }
 }
 
-data "ibm_resource_group" "group" {
-  name = "default"
-}
+
 
 resource "ibm_iam_user_policy" "policy" {
   ibm_id = "acajas@stemdo.io"
