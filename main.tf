@@ -12,7 +12,7 @@ provider "ibm" {
   ibmcloud_api_key = var.api_key
 }
 
- 
+ ## Kubernetes provider configuration 
 provider "kubernetes" {
   host                   = data.ibm_container_cluster_config.cluster_config.host
   token                  = data.ibm_container_cluster_config.cluster_config.token
@@ -31,6 +31,7 @@ data "ibm_container_cluster_config" "cluster_config" {
   admin             = true
 }
 
+## Permissions management for Stemdo Wiki project 
 
 resource "ibm_iam_access_group" "stemdowiki" {
  name        = "stemdo_WIKI"
@@ -43,3 +44,16 @@ resource "kubernetes_namespace" "stemdo-wiki" {
   }
 }
 
+data "ibm_resource_group" "group" {
+  name = "default"
+}
+
+resource "ibm_iam_user_policy" "policy" {
+  ibm_id = "acajas@stemdo.io"
+  roles  = ["Viewer","Editor"]
+
+  resources {
+    service           = "containers-kubernetes"
+    resource_group_id = var.resource_group
+  }
+}
