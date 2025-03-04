@@ -44,8 +44,6 @@ resource "kubernetes_namespace" "stemdo-wiki" {
   }
 }
 
-
-
 resource "ibm_iam_user_policy" "policy" {
   ibm_id = "acajas@stemdo.io"
   roles  = ["Viewer","Editor"]
